@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-08-19T02:09:06.000Z</updated>
+  <updated>2015-08-20T16:36:31.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[七夕节随笔]]></title>
+    <link href="http://yoursite.com/2015/08/21/%E4%B8%83%E5%A4%95%E8%8A%82%E9%9A%8F%E7%AC%94/"/>
+    <id>http://yoursite.com/2015/08/21/七夕节随笔/</id>
+    <published>2015-08-20T16:23:17.000Z</published>
+    <updated>2015-08-20T16:36:31.000Z</updated>
+    <content type="html"><![CDATA[<p>哪里有人会喜欢寂寞，只不过是不想失望罢了<br>不知道自己一个人过了多少个光棍节，情人节，七夕。。。<br>自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了<br>所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）</p>
+<p>也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了<br>而刚好，我心里装着一个<br>好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，胆小如鼠<br>是时候勇敢往前踏一步了，就算前方是悬崖又如何<br>加油！少年<br>晚安~</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>哪里有人会喜欢寂寞，只不过是不想失望罢了<br>不知道自己一个人过了多少个光棍节，情人节，七夕。。。<br>自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了<br>所以才会一直单身到现在吧（不过是自己给自己找个理由罢了]]>
+    </summary>
+    
+      <category term="心情记录" scheme="http://yoursite.com/tags/%E5%BF%83%E6%83%85%E8%AE%B0%E5%BD%95/"/>
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
