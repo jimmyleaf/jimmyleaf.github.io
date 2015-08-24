@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>七夕节随笔 | JimmyLeaf的个人小站</title>
+  <title>PHP CURL单独获取http状态码 | JimmyLeaf的个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="哪里有人会喜欢寂寞，只不过是不想失望罢了不知道自己一个人过了多少个光棍节，情人节，七夕。。。自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）
-也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了而刚好，我心里装着一个好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，">
+  <meta name="description" content="#前言PHP使用CURL能获取访问某URL返回的html的头信息，body信息等，下面讲述的是从返回的头信息单独获取状态码的方法
+#实例直接贴核心代码123456789101112131415161718/*模拟浏览器*/$user_agent = &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="七夕节随笔">
-<meta property="og:url" content="http://yoursite.com/2015/08/21/七夕节随笔/index.html">
+<meta property="og:title" content="PHP CURL单独获取http状态码">
+<meta property="og:url" content="http://yoursite.com/2015/08/24/PHP-CURL单独获取http状态码/index.html">
 <meta property="og:site_name" content="JimmyLeaf的个人小站">
-<meta property="og:description" content="哪里有人会喜欢寂寞，只不过是不想失望罢了不知道自己一个人过了多少个光棍节，情人节，七夕。。。自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）
-也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了而刚好，我心里装着一个好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，">
-<meta property="og:updated_time" content="2015-08-20T16:36:31.000Z">
+<meta property="og:description" content="#前言PHP使用CURL能获取访问某URL返回的html的头信息，body信息等，下面讲述的是从返回的头信息单独获取状态码的方法
+#实例直接贴核心代码123456789101112131415161718/*模拟浏览器*/$user_agent = &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3">
+<meta property="og:updated_time" content="2015-08-24T07:26:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七夕节随笔">
-<meta name="twitter:description" content="哪里有人会喜欢寂寞，只不过是不想失望罢了不知道自己一个人过了多少个光棍节，情人节，七夕。。。自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）
-也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了而刚好，我心里装着一个好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，">
+<meta name="twitter:title" content="PHP CURL单独获取http状态码">
+<meta name="twitter:description" content="#前言PHP使用CURL能获取访问某URL返回的html的头信息，body信息等，下面讲述的是从返回的头信息单独获取状态码的方法
+#实例直接贴核心代码123456789101112131415161718/*模拟浏览器*/$user_agent = &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3">
   
     <link rel="alternative" href="/atom.xml" title="JimmyLeaf的个人小站" type="application/atom+xml">
   
@@ -169,11 +169,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-七夕节随笔" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-PHP-CURL单独获取http状态码" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/21/七夕节随笔/" class="article-date">
-  	<time datetime="2015-08-20T16:23:17.000Z" itemprop="datePublished">2015-08-21</time>
+      <a href="/2015/08/24/PHP-CURL单独获取http状态码/" class="article-date">
+  	<time datetime="2015-08-24T07:18:00.000Z" itemprop="datePublished">2015-08-24</time>
 </a>
     </div>
   
@@ -186,7 +186,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      七夕节随笔
+      PHP CURL单独获取http状态码
     </h1>
   
 
@@ -195,7 +195,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情记录/">心情记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CURL/">CURL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
 	</div>
 
         
@@ -206,8 +206,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>哪里有人会喜欢寂寞，只不过是不想失望罢了<br>不知道自己一个人过了多少个光棍节，情人节，七夕。。。<br>自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了<br>所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）</p>
-<p>也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了<br>而刚好，我心里装着一个<br>好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，胆小如鼠<br>是时候勇敢往前踏一步了，就算前方是悬崖又如何<br>加油！少年<br>晚安~</p>
+        <p>#前言<br>PHP使用CURL能获取访问某URL返回的html的头信息，body信息等，下面讲述的是从返回的头信息单独获取状态码的方法</p>
+<p>#实例<br>直接贴核心代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*模拟浏览器*/</span></span><br><span class="line"><span class="variable">$user_agent</span> = <span class="string">"Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4"</span>;</span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="variable">$ch</span> = curl_init();</span><br><span class="line">curl_setopt(<span class="variable">$ch</span>,CURLOPT_HEADER,<span class="number">1</span>);<span class="comment">//获取http头信息</span></span><br><span class="line">curl_setopt(<span class="variable">$ch</span>,CURLOPT_NOBODY,<span class="number">1</span>);<span class="comment">//不返回html的body信息</span></span><br><span class="line">curl_setopt(<span class="variable">$ch</span>,CURLOPT_TIMEOUT,<span class="number">30</span>); <span class="comment">//超时时长，单位秒</span></span><br><span class="line">curl_setopt (<span class="variable">$ch</span>, CURLOPT_USERAGENT, <span class="variable">$user_agent</span> ); <span class="comment">// 模拟用户使用的浏览器</span></span><br><span class="line">curl_setopt(<span class="variable">$ch</span>, CURLOPT_REFERER, <span class="string">"http://www.baidu.com/search/spider.html"</span>);<span class="comment">//模拟百度爬虫获取，防止被禁</span></span><br><span class="line">curl_setopt(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$url</span>);<span class="comment">//$url代表你要请求的链接</span></span><br><span class="line">curl_setopt(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);<span class="comment">//返回值，而不是直接输出</span></span><br><span class="line">curl_setopt(<span class="variable">$ch</span>, CURLOPT_CUSTOMREQUEST, <span class="string">'GET'</span>);<span class="comment">//设置请求方式GET</span></span><br><span class="line"><span class="comment">//执行并获取HTML文档内容</span></span><br><span class="line">curl_exec(<span class="variable">$ch</span>);</span><br><span class="line"><span class="variable">$http_code</span> = strval(curl_getinfo(<span class="variable">$ch</span>,CURLINFO_HTTP_CODE));<span class="comment">//单独获取http状态码;</span></span><br><span class="line">var_dump(<span class="variable">$http_code</span>);<span class="comment">//输出http状态码</span></span><br><span class="line"><span class="comment">//释放curl句柄</span></span><br><span class="line">curl_close(<span class="variable">$ch</span>);</span><br></pre></td></tr></table></figure></p>
+<p>#后记<br>PHP结合CURL还能做到很多事，待研究，在此记录</p>
 
       
     </div>
@@ -217,18 +218,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/24/PHP-CURL单独获取http状态码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          PHP CURL单独获取http状态码
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2015/08/21/七夕节随笔/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">七夕节随笔</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -257,7 +249,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="七夕节随笔" data-title="七夕节随笔" data-url="http://yoursite.com/2015/08/21/七夕节随笔/"></div>
+	<div class="ds-thread" data-thread-key="PHP-CURL单独获取http状态码" data-title="PHP CURL单独获取http状态码" data-url="http://yoursite.com/2015/08/24/PHP-CURL单独获取http状态码/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
