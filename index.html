@@ -193,37 +193,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="smallapple简介">smallapple简介</h1><h2 id="下载地址">下载地址</h2><p><a href="https://github.com/jimmyleaf/smallapple" target="_blank" rel="external">github</a></p>
+        <h1 id="smallapple简介">smallapple简介</h1><h2 id="下载地址">下载地址</h2><p><a href="https://github.com/jimmyleaf/smallapple">github</a></p>
 <h2 id="介绍">介绍</h2><p>Smallapple是一个开源的IOS自动化测试工具，旨在提供一套完整的IOS自动化测试解决方案，提供针对IOS App的功能和性能测试，同时提供类似Android adb、重签名、instruments结果解析、录制回放等工具集。</p>
 <p>Smallapple通过一键式的执行方式，自动完成App重签名、安装、测试、性能采集（包括CPU、内存、流量等）、Crash检测和结果报告等工作。</p>
 <h2 id="特性">特性</h2><p>Smallapple致力于以最简单的方式，最小的代价提供给用户使用。<br><em>支持非越狱设备
 </em>不需要依赖源码<br><em>支持Appstore或者第三方下载的App安装测试
 </em>完全的命令行模式</p>
-<p>Smallapple是基于苹果官方的instruments工具来开发，测试脚本支持原生的UI Automation，同时扩展了很多功能使得自动化测试更加便捷、易用。</p>
-<h1 id="如何部署">如何部署</h1><h2 id="前置条件">前置条件</h2><p><em>一台 MAC（ macbook pro、air、iMac均可）
-</em>要求OSX 10.9+<br><em>安装 XCode 5.1+
-</em>确保已安装Apple Developer Tools (command line tools)<br>*申请开发者证书，打发者证书的Debug包</p>
-<h1 id="快速开始">快速开始</h1><p>先查看smallapple.sh 的使用说明:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smallapple version 0.9.5&#10;&#10;       install        : install app&#10;       appinfo        : get app infomation&#10;       resign         : resign app&#10;&#10;       record         : record &#38; playback tool&#10;&#10;       automation     : automation testing&#10;       vcheck         : version compatibility testing</span><br></pre></td></tr></table></figure></p>
-<p>如上图所示</p>
-<ol>
-<li>install app 安装对应的app，需要ipa包(开发者证书,机器加入provision)<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh smallapple.sh install xxx.ipa&#10;&#10;&#22914;&#26524;&#19981;&#36755;&#20837;ipa&#21253;&#36335;&#24452;&#65292;&#20250;&#25552;&#31034;&#10;usage: smallapple install &#60;.ipa/.app path&#62;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>2.appinfo  查找对应app包得一些信息<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh smallapple.sh appinfo xxx.ipa</span><br></pre></td></tr></table></figure></p>
-<p>3.resign app 重签名app<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh smallapple.sh  resign&#10;resign [options] &#60;.ipa/.app path&#62; &#60;output path&#62;&#10;options:&#10;    -p &#60;.mobileprovision path&#62;&#10;      or -e &#60;entitlement path&#62;&#10;    -i &#60;developer identity&#62;</span><br></pre></td></tr></table></figure></p>
-<p>看出来参数需要签名id和provision的path<br>使用-p指定描述文件(Provisoning Profiles)，-i指定开发者证书(Certificates)</p>
-<p>4.automation testing <strong>最重要的命令,进行自动化测试</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh smallapple.sh automation&#10;usage: smallapple automation [options] &#60;.ipa/.app path | bundle id&#62;&#10;options:&#10;    -s &#60;device id&#62;                 : specify device id. default the first found device&#10;    -b                             : use bundle id instead of app path&#10;    -o &#60;result dir&#62;                : result direcotry. default $PWD/result&#10;&#10;script options:&#10;    -t &#60;template&#62;                  : instruments template. default SMALLAPPLE/templates/Automation_Monitor_CoreAnimation_Energy_Network.tracetemplate&#10;    -c &#60;script&#62;                    : instruments automation js. default SMALLAPPLE/scripts/UIAutoMonkey.js&#10;&#10;resign options:&#10;    -p &#60;.mobileprovision path&#62;     : .mobileprovision path&#10;      or  -e &#60;entitlement path&#62;    : entitlement path&#10;    -i &#60;developer identity&#62;        : ios developer identity&#10;&#10;crash options:&#10;    -d &#60;dsym path&#62;                 : dSYM path for crash analyze&#10;&#10;example:&#10;    smallapple automation test.ipa&#10;    smallapple automation -b com.baidu.BaiduMobile&#10;    smallapple automation -c &#60;testcase&#62; -b com.baidu.BaiduMobile&#10;    smallapple automation -s &#60;device&#62; -p &#60;provision&#62; -i &#60;identity&#62; -c &#60;testcase&#62; test.ipa</span><br></pre></td></tr></table></figure></p>
-<p>具体命令使用方式看上面的提示就行了,-c 执行指定js脚本，如果没有这选项，默认执行monkey脚本</p>
-<h1 id="扩展">扩展</h1><p>运行完之后，如果没啥报错，在根目录下会生成一个 result文件夹，打开该文件夹下的 result.html可查看测试报告<br>大多数情况下，只需要提供一个编译好的App(.ipa or .app)即可进行自动化的测试。<br>建议每次新跑测试时将原来的result目录删除或者-o指定其它目录。</p>
-<p><img src="http://img.blog.csdn.net/20150512222338484" alt="运行效果"></p>
-<h3 id="通过iosutil查看已安装App，找到对应的Bundle_Id">通过iosutil查看已安装App，找到对应的Bundle Id</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/iosutil listapp</span><br></pre></td></tr></table></figure>
-<h3 id="可视化脚本录制回放">可视化脚本录制回放</h3><p>mallapple record或者直接open bin/iOSRecorder.app即可打开录制回放工具<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sh</span> smallapple.<span class="keyword">sh</span> record</span><br></pre></td></tr></table></figure></p>
-<h3 id="覆盖安装测试">覆盖安装测试</h3><p>bin/iosutil可以查看指定App的数据文件，并且可以将App的Documents和Library目录下文件拷贝到Mac机进行旧版本数据的备份，或者将Mac机文件还原上传到这2个目录下。</p>
-<p>查看com.baidu.BaiduMobile的Documents目录<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/iosutil ls -<span class="tag">b</span> com<span class="class">.baidu</span><span class="class">.BaiduMobile</span> /Documents</span><br></pre></td></tr></table></figure></p>
-<p>备份com.baidu.BaiduMobile的Documents目录下data文件<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bin/iosutil pull -<span class="tag">b</span> com<span class="class">.baidu</span><span class="class">.BaiduMobile</span> /Documents/data ./backup</span><br></pre></td></tr></table></figure></p>
-<p>完成新版本安装后，还原com.baidu.BaiduMobile的Documents目录下data文件<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">bin/iosutil </span><span class="keyword">push </span>-<span class="keyword">b </span>com.<span class="keyword">baidu.BaiduMobile </span>./<span class="keyword">backup/data </span>/Documents</span><br></pre></td></tr></table></figure></p>
-<p>—-THE END—</p>
-
+<p>Smallapple是基于苹果官方的instruments工具来开发，测试脚本支持原生的UI Automation，同时扩展了很多功能使得自动化测试更加便捷、易用。<br>
       
     </div>
     
@@ -236,6 +212,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/28/IOS-测试自动化框架——smallapple/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
