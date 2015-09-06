@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/09/06/Apache配置rewrite规则-实例记录/index.html">
 <meta property="og:site_name" content="JimmyLeaf的个人小站">
 <meta property="og:description" content="需求描述今天遇到一个需求，大概是这样子的，配置apache服务器的一个rewrite规则目的是把类似请求 http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;amp;ggg=hhh 这种类型的url重定向成  http://www.baidu.com/xxx/aaa.php?pid=数字&amp;amp;url=&amp;#39;/ccc/ddd‘ 的请求ddd">
-<meta property="og:updated_time" content="2015-09-06T09:18:06.000Z">
+<meta property="og:updated_time" content="2015-09-06T09:19:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache配置rewrite规则-实例记录">
 <meta name="twitter:description" content="需求描述今天遇到一个需求，大概是这样子的，配置apache服务器的一个rewrite规则目的是把类似请求 http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;amp;ggg=hhh 这种类型的url重定向成  http://www.baidu.com/xxx/aaa.php?pid=数字&amp;amp;url=&amp;#39;/ccc/ddd‘ 的请求ddd">
@@ -204,18 +204,28 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="需求描述">需求描述</h3><p>今天遇到一个需求，大概是这样子的，配置apache服务器的一个rewrite规则<br>目的是把类似请求 <a href="http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;ggg=hhh" target="_blank" rel="external">http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;ggg=hhh</a> 这种类型的url<br>重定向成  <a href="http://www.baidu.com/xxx/aaa.php?pid=数字&amp;url=&#39;/ccc/ddd" target="_blank" rel="external">http://www.baidu.com/xxx/aaa.php?pid=数字&amp;url=&#39;/ccc/ddd</a>‘ 的请求<br>ddd后面的参数也要再aaa.php 通过$_SERVER[‘QUERY_STRING’]获取</p>
-<h3 id="实际配置">实际配置</h3><p>*打开apache http.conf 把对应文件目录的配置打开,添加如下内容<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">Directory</span> <span class="string">"xxx"</span>&gt;</span><br><span class="line">    AllowOverride <span class="keyword">All</span></span><br><span class="line">&lt;/<span class="keyword">Directory</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="实际配置">实际配置</h3><ul>
+<li>打开apache http.conf 把对应文件目录的配置打开,添加如下内容<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">Directory</span> <span class="string">"xxx"</span>&gt;</span><br><span class="line">    AllowOverride <span class="keyword">All</span></span><br><span class="line">&lt;/<span class="keyword">Directory</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>打开rewrite模块 LoadModule rewrite_module modules/mod_rewrite.so</p>
 <p>重启apache后生效</p>
-<p>*在对应目录xxx新建/修改.htaccess文件<br>输入如下内容<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine On</span><br><span class="line">RewriteBase /xxx</span><br><span class="line"></span><br><span class="line">RewriteRule ^aaa/bbb/([<span class="number">0</span>-<span class="number">9</span>]+)/(.+)$  aaa.php?bbb=<span class="variable">$1</span>&amp;url=<span class="variable">$2</span> [QSA]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>在对应目录xxx新建/修改.htaccess文件<br>输入如下内容<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine On</span><br><span class="line">RewriteBase /xxx</span><br><span class="line"></span><br><span class="line">RewriteRule ^aaa/bbb/([<span class="number">0</span>-<span class="number">9</span>]+)/(.+)$  aaa.php?bbb=<span class="variable">$1</span>&amp;url=<span class="variable">$2</span> [QSA]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>对应正则表达式解释，请自行百度<br>重点是后面[QSA]配置</p>
-<p>在apache rewrite文档里面有一段介绍[QSA]参数，专门用来传递?后的请求参数到实际地址。<br><a href="http://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa" target="_blank" rel="external">apache文档</a></p>
+<p>在apache rewrite文档里面有一段介绍[QSA]参数，专门用来传递?后的请求参数到实际地址。<a href="http://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa" target="_blank" rel="external">apache文档</a></p>
 <blockquote>
-<p>When the replacement URI contains a query string, the default behavior of RewriteRule is to discard the existing query string, and replace it with the newly generated one. Using the [QSA] flag causes the query strings to be combined.<br>Consider the following rule:<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule /pages/(.+) /page.php?page=<span class="variable">$1</span> [QSA]</span><br></pre></td></tr></table></figure></p>
+<p>When the replacement URI contains a query string, the default behavior of RewriteRule is to discard the existing query string, and replace it with the newly generated one. Using the [QSA] flag causes the query strings to be combined.</p>
+</blockquote>
+<p>Consider the following rule:</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule /pages/(.+) /page.php?page=<span class="variable">$1</span> [QSA]</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>With the [QSA] flag, a request for /pages/123?one=two will be mapped to /page.php?page=123&amp;one=two. Without the [QSA] flag, that same request will be mapped to/page.php?page=123 - that is, the existing query string will be discarded.</p>
 </blockquote>
 <p>要想再aaa.php,通过$_SERVER[‘QUERY_STRING’]能获取到ddd后面的参数则必须加上[QSA]参数</p>
-<h3 id="参考文档:">参考文档:</h3><p><a href="http://www.cnblogs.com/ainiaa/archive/2011/11/14/2248673.html" target="_blank" rel="external">http://www.cnblogs.com/ainiaa/archive/2011/11/14/2248673.html</a></p>
+<h3 id="参考文档:">参考文档:</h3><p><a href="http://www.cnblogs.com/ainiaa/archive/2011/11/14/2248673.html" target="_blank" rel="external">http://www.cnblogs.com/ainiaa/archive/2011/11/14/2248673.html</a><br><a href="http://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa" target="_blank" rel="external">http://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa</a></p>
 
       
     </div>
