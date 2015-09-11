@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到
 找到工具所在路径在终端中输入命令搜索:1find /Applications/Xcode.app -name symbolicatecrash -type f
-比如我自己的就放在:/A">
+比如我自己的就放在:1/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用symbolicatecrash分析ios crash文件">
 <meta property="og:url" content="http://yoursite.com/2015/09/11/使用symbolicatecrash分析ios-crash文件/index.html">
 <meta property="og:site_name" content="JimmyLeaf的个人小站">
 <meta property="og:description" content="前言测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到
 找到工具所在路径在终端中输入命令搜索:1find /Applications/Xcode.app -name symbolicatecrash -type f
-比如我自己的就放在:/A">
-<meta property="og:updated_time" content="2015-09-11T06:26:57.000Z">
+比如我自己的就放在:1/">
+<meta property="og:updated_time" content="2015-09-11T06:27:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用symbolicatecrash分析ios crash文件">
 <meta name="twitter:description" content="前言测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到
 找到工具所在路径在终端中输入命令搜索:1find /Applications/Xcode.app -name symbolicatecrash -type f
-比如我自己的就放在:/A">
+比如我自己的就放在:1/">
   
     <link rel="alternative" href="/atom.xml" title="JimmyLeaf的个人小站" type="application/atom+xml">
   
@@ -211,7 +211,7 @@
       
         <h2 id="前言">前言</h2><p>测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash<br>为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到</p>
 <h4 id="找到工具所在路径">找到工具所在路径</h4><p>在终端中输入命令搜索:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /Applications/Xcode.<span class="keyword">app</span> -name symbolicatecrash -<span class="keyword">type</span> <span class="literal">f</span></span><br></pre></td></tr></table></figure></p>
-<p>比如我自己的就放在:<br>/Applications/Xcode.app/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash</p>
+<p>比如我自己的就放在:<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>SharedFrameworks<span class="regexp">/DTDeviceKitBase.framework/</span>Versions<span class="regexp">/A/</span>Resources<span class="regexp">/symbolicatecrash</span></span><br></pre></td></tr></table></figure></p>
 <p>可以把这个工具拷贝在常用目录，也可以配置软链接指向这个路径<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s <span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>SharedFrameworks<span class="regexp">/DTDeviceKitBase.framework/</span>Versions<span class="regexp">/A/</span>Resources<span class="regexp">/symbolicatecrash /u</span>sr<span class="regexp">/local/</span>bin<span class="regexp">/symbolicatecrash</span></span><br></pre></td></tr></table></figure></p>
 <p>之后就可以直接输入symbolicatecrash 使用了</p>
 <h4 id="执行解析">执行解析</h4><p>执行前有几个前置条件:</p>
