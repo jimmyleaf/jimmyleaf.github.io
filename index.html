@@ -105,7 +105,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CURL/" style="font-size: 10px;">CURL</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/ios/" style="font-size: 20px;">ios</a> <a href="/tags/心情记录/" style="font-size: 10px;">心情记录</a> <a href="/tags/测试/" style="font-size: 20px;">测试</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
+						<a href="/tags/CURL/" style="font-size: 10px;">CURL</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/ios/" style="font-size: 20px;">ios</a> <a href="/tags/心情记录/" style="font-size: 10px;">心情记录</a> <a href="/tags/测试/" style="font-size: 15px;">测试</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
 					</div>
 				</section>
 				
@@ -166,6 +166,73 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-使用symbolicatecrash分析ios-crash文件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/11/使用symbolicatecrash分析ios-crash文件/" class="article-date">
+  	<time datetime="2015-09-11T06:08:56.000Z" itemprop="datePublished">2015-09-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/11/使用symbolicatecrash分析ios-crash文件/">使用symbolicatecrash分析ios crash文件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言">前言</h2><p>测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash<br>为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到</p>
+<h4 id="找到工具所在路径">找到工具所在路径</h4><p>在终端中输入命令搜索:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /Applications/Xcode.<span class="keyword">app</span> -name symbolicatecrash -<span class="keyword">type</span> <span class="literal">f</span></span><br></pre></td></tr></table></figure></p>
+<p>比如我自己的就放在：/Applications/Xcode.app/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash</p>
+<p>可以把这个工具拷贝在常用目录，也可以配置软链接指向这个路径<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s <span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>SharedFrameworks<span class="regexp">/DTDeviceKitBase.framework/</span>Versions<span class="regexp">/A/</span>Resources<span class="regexp">/symbolicatecrash /u</span>sr<span class="regexp">/local/</span>bin<span class="regexp">/symbolicatecrash</span></span><br></pre></td></tr></table></figure></p>
+<p>之后就可以直接输入symbolicatecrash 使用了</p>
+<h4 id="执行解析">执行解析</h4><p>执行前有几个前置条件:</p>
+<ul>
+<li>对应crash的原始文件，可以通过xcode从手机的device log导出</li>
+<li>对应安装包得符号表文件，XXXX.dSYM</li>
+<li>配置DEVELOPER_DIR,执行命令前export DEVELOPER_DIR=”/Applications/Xcode.app/Contents/Developer” 或者配置到~/.bash_profile 再执行 source ~/.bash_profile<br>执行命令:<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">symbolicatecrash xxxx<span class="class">.crash</span> XXXX<span class="class">.dSYM</span> &gt; yyyy.crash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这时候得到的yyyy.crash就是经过解析后的crash文件</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-Apache配置rewrite规则-实例记录" class="article article-type-post" itemscope itemprop="blogPost">
   

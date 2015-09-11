@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Apache配置rewrite规则-实例记录 | JimmyLeaf的个人小站</title>
+  <title>使用symbolicatecrash分析ios crash文件 | JimmyLeaf的个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="需求描述今天遇到一个需求，大概是这样子的，配置apache服务器的一个rewrite规则目的是把类似请求 http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;amp;ggg=hhh 这种类型的url重定向成  http://www.baidu.com/xxx/aaa.php?pid=数字&amp;amp;url=&amp;#39;/ccc/ddd‘ 的请求ddd">
+  <meta name="description" content="前言测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到
+找到工具所在路径在终端中输入命令搜索:1find /Applications/Xcode.app -name symbolicatecrash -type f
+比如我自己的就放在：/A">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Apache配置rewrite规则-实例记录">
-<meta property="og:url" content="http://yoursite.com/2015/09/06/Apache配置rewrite规则-实例记录/index.html">
+<meta property="og:title" content="使用symbolicatecrash分析ios crash文件">
+<meta property="og:url" content="http://yoursite.com/2015/09/11/使用symbolicatecrash分析ios-crash文件/index.html">
 <meta property="og:site_name" content="JimmyLeaf的个人小站">
-<meta property="og:description" content="需求描述今天遇到一个需求，大概是这样子的，配置apache服务器的一个rewrite规则目的是把类似请求 http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;amp;ggg=hhh 这种类型的url重定向成  http://www.baidu.com/xxx/aaa.php?pid=数字&amp;amp;url=&amp;#39;/ccc/ddd‘ 的请求ddd">
-<meta property="og:updated_time" content="2015-09-06T09:19:44.000Z">
+<meta property="og:description" content="前言测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到
+找到工具所在路径在终端中输入命令搜索:1find /Applications/Xcode.app -name symbolicatecrash -type f
+比如我自己的就放在：/A">
+<meta property="og:updated_time" content="2015-09-11T06:25:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Apache配置rewrite规则-实例记录">
-<meta name="twitter:description" content="需求描述今天遇到一个需求，大概是这样子的，配置apache服务器的一个rewrite规则目的是把类似请求 http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;amp;ggg=hhh 这种类型的url重定向成  http://www.baidu.com/xxx/aaa.php?pid=数字&amp;amp;url=&amp;#39;/ccc/ddd‘ 的请求ddd">
+<meta name="twitter:title" content="使用symbolicatecrash分析ios crash文件">
+<meta name="twitter:description" content="前言测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到
+找到工具所在路径在终端中输入命令搜索:1find /Applications/Xcode.app -name symbolicatecrash -type f
+比如我自己的就放在：/A">
   
     <link rel="alternative" href="/atom.xml" title="JimmyLeaf的个人小站" type="application/atom+xml">
   
@@ -166,11 +172,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Apache配置rewrite规则-实例记录" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-使用symbolicatecrash分析ios-crash文件" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/09/06/Apache配置rewrite规则-实例记录/" class="article-date">
-  	<time datetime="2015-09-06T09:00:08.000Z" itemprop="datePublished">2015-09-06</time>
+      <a href="/2015/09/11/使用symbolicatecrash分析ios-crash文件/" class="article-date">
+  	<time datetime="2015-09-11T06:08:56.000Z" itemprop="datePublished">2015-09-11</time>
 </a>
     </div>
   
@@ -183,7 +189,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Apache配置rewrite规则-实例记录
+      使用symbolicatecrash分析ios crash文件
     </h1>
   
 
@@ -192,7 +198,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li></ul>
 	</div>
 
         
@@ -203,29 +209,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="需求描述">需求描述</h3><p>今天遇到一个需求，大概是这样子的，配置apache服务器的一个rewrite规则<br>目的是把类似请求 <a href="http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;ggg=hhh" target="_blank" rel="external">http://www.baidu.com/xxx/aaa/bbb/数字/ccc/ddd?eee=fff&amp;ggg=hhh</a> 这种类型的url<br>重定向成  <a href="http://www.baidu.com/xxx/aaa.php?pid=数字&amp;url=&#39;/ccc/ddd" target="_blank" rel="external">http://www.baidu.com/xxx/aaa.php?pid=数字&amp;url=&#39;/ccc/ddd</a>‘ 的请求<br>ddd后面的参数也要再aaa.php 通过$_SERVER[‘QUERY_STRING’]获取</p>
-<h3 id="实际配置">实际配置</h3><ul>
-<li>打开apache http.conf 把对应文件目录的配置打开,添加如下内容<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">Directory</span> <span class="string">"xxx"</span>&gt;</span><br><span class="line">    AllowOverride <span class="keyword">All</span></span><br><span class="line">&lt;/<span class="keyword">Directory</span>&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>打开rewrite模块 LoadModule rewrite_module modules/mod_rewrite.so</p>
-<p>重启apache后生效</p>
+        <h2 id="前言">前言</h2><p>测试人员和ios开发都得掌握的一项技能就是把ios设备原始的crash文件解析成能读懂的crash<br>为此就需要用到symbolicatecrash这一个工具，通过这个工具和报crash对应包得符号表文件就可以做到</p>
+<h4 id="找到工具所在路径">找到工具所在路径</h4><p>在终端中输入命令搜索:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /Applications/Xcode.<span class="keyword">app</span> -name symbolicatecrash -<span class="keyword">type</span> <span class="literal">f</span></span><br></pre></td></tr></table></figure></p>
+<p>比如我自己的就放在：/Applications/Xcode.app/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash</p>
+<p>可以把这个工具拷贝在常用目录，也可以配置软链接指向这个路径<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s <span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>SharedFrameworks<span class="regexp">/DTDeviceKitBase.framework/</span>Versions<span class="regexp">/A/</span>Resources<span class="regexp">/symbolicatecrash /u</span>sr<span class="regexp">/local/</span>bin<span class="regexp">/symbolicatecrash</span></span><br></pre></td></tr></table></figure></p>
+<p>之后就可以直接输入symbolicatecrash 使用了</p>
+<h4 id="执行解析">执行解析</h4><p>执行前有几个前置条件:</p>
 <ul>
-<li>在对应目录xxx新建/修改.htaccess文件<br>输入如下内容<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine On</span><br><span class="line">RewriteBase /xxx</span><br><span class="line"></span><br><span class="line">RewriteRule ^aaa/bbb/([<span class="number">0</span>-<span class="number">9</span>]+)/(.+)$  aaa.php?bbb=<span class="variable">$1</span>&amp;url=<span class="variable">$2</span> [QSA]</span><br></pre></td></tr></table></figure>
+<li>对应crash的原始文件，可以通过xcode从手机的device log导出</li>
+<li>对应安装包得符号表文件，XXXX.dSYM</li>
+<li>配置DEVELOPER_DIR,执行命令前export DEVELOPER_DIR=”/Applications/Xcode.app/Contents/Developer” 或者配置到~/.bash_profile 再执行 source ~/.bash_profile<br>执行命令:<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">symbolicatecrash xxxx<span class="class">.crash</span> XXXX<span class="class">.dSYM</span> &gt; yyyy.crash</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>对应正则表达式解释，请自行百度<br>重点是后面[QSA]配置</p>
-<p>在apache rewrite文档里面有一段介绍[QSA]参数，专门用来传递?后的请求参数到实际地址。<a href="http://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa" target="_blank" rel="external">apache文档</a></p>
-<blockquote>
-<p>When the replacement URI contains a query string, the default behavior of RewriteRule is to discard the existing query string, and replace it with the newly generated one. Using the [QSA] flag causes the query strings to be combined.</p>
-</blockquote>
-<p>Consider the following rule:</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RewriteRule /pages/(.+) /page.php?page=<span class="variable">$1</span> [QSA]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>With the [QSA] flag, a request for /pages/123?one=two will be mapped to /page.php?page=123&amp;one=two. Without the [QSA] flag, that same request will be mapped to/page.php?page=123 - that is, the existing query string will be discarded.</p>
-</blockquote>
-<p>要想再aaa.php,通过$_SERVER[‘QUERY_STRING’]能获取到ddd后面的参数则必须加上[QSA]参数</p>
-<h3 id="参考文档:">参考文档:</h3><p><a href="http://www.cnblogs.com/ainiaa/archive/2011/11/14/2248673.html" target="_blank" rel="external">http://www.cnblogs.com/ainiaa/archive/2011/11/14/2248673.html</a><br><a href="http://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa" target="_blank" rel="external">http://httpd.apache.org/docs/current/rewrite/flags.html#flag_qsa</a></p>
+<p>这时候得到的yyyy.crash就是经过解析后的crash文件</p>
 
       
     </div>
@@ -235,18 +231,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/09/11/使用symbolicatecrash分析ios-crash文件/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          使用symbolicatecrash分析ios crash文件
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/31/搬家随笔/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">搬家随笔</div>
+    <a href="/2015/09/06/Apache配置rewrite规则-实例记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Apache配置rewrite规则-实例记录</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -275,7 +262,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Apache配置rewrite规则-实例记录" data-title="Apache配置rewrite规则-实例记录" data-url="http://yoursite.com/2015/09/06/Apache配置rewrite规则-实例记录/"></div>
+	<div class="ds-thread" data-thread-key="使用symbolicatecrash分析ios-crash文件" data-title="使用symbolicatecrash分析ios crash文件" data-url="http://yoursite.com/2015/09/11/使用symbolicatecrash分析ios-crash文件/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
