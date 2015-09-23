@@ -15,7 +15,7 @@
 <meta property="og:description" content="前言这周接到一个新的需求，开发说能不能通过他们svn ci的log信息来定制jenkins的构建其实也就是，他们提交代码的时候附带log，如果写上[jenkins:xxx]，就触发打包，否则本次构建就不执行操作
 实现原理
 首先jenkins，是可以配置去轮询svn有没有新的代码提交的，配置方法是，在构建触发器-Poll SCM中输入  /x    *  表示x分钟去查询一次有没有代码变动，这里的配">
-<meta property="og:updated_time" content="2015-09-23T06:11:24.000Z">
+<meta property="og:updated_time" content="2015-09-23T06:59:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins小技巧">
 <meta name="twitter:description" content="前言这周接到一个新的需求，开发说能不能通过他们svn ci的log信息来定制jenkins的构建其实也就是，他们提交代码的时候附带log，如果写上[jenkins:xxx]，就触发打包，否则本次构建就不执行操作
@@ -212,12 +212,12 @@
         <h2 id="前言">前言</h2><p>这周接到一个新的需求，开发说能不能通过他们svn ci的log信息来定制jenkins的构建<br>其实也就是，他们提交代码的时候附带log，如果写上[jenkins:xxx]，就触发打包，否则本次构建就不执行操作</p>
 <h3 id="实现原理">实现原理</h3><ol>
 <li>首先jenkins，是可以配置去轮询svn有没有新的代码提交的，配置方法是，在构建触发器-Poll SCM中输入  <em>/x </em> <em> </em> *  表示x分钟去查询一次有没有代码变动，这里的配置方法类似于linux的定时任务命令contrab的配置，具体请百度</li>
-<li>其次如果代码有提交，jenkins查询到是会触发一次新的构建，新的构建在job/builds/${BUILD_NUMBER}/changelog.xml 是保存了代码变动信息的，包括svn check log</li>
+<li>其次如果代码有提交，jenkins查询到是会触发一次新的构建，新的构建在job/builds/${BUILD_NUMBER}/changelog.xml 是保存了代码变动信息的，包括svn check log，说明一下，${BUILD_NUMBER}是jenkins的默认环境变量，代表本次构建的构建号，可以运用于Execute shell等构建项下，当然还有其他很多变量，请自行百度，这里不做详细介绍</li>
 <li>根据相应的正则表达式，就能在对应changelog.xml里找到对应格式的信息，在本实例是要获取xxx的值，方便后续打包使用，具体情况这里可以变通</li>
 </ol>
 <h3 id="具体实现">具体实现</h3><p>shell具体实现如下，在job配置构建栏，新增Execute shell<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx=`perl -<span class="keyword">n</span> -<span class="keyword">e</span> '/\[jenkins:(.*)$\]/ &amp;&amp; <span class="keyword">print</span> <span class="string">"$1"</span>' ../builds/<span class="label">$&#123;BUILD_NUMBER&#125;</span>/changelog.xml`</span><br></pre></td></tr></table></figure></p>
-<p>通过上面一句就能获取到xxx，如果开发提交的svn check log没有类似格式的信息，就停止这次构建，这样就达到了开发控制job走向的功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;xxx&#125;</span> ]; <span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"停止构建！！"</span></span><br><span class="line">	<span class="built_in">exit</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="总结">总结</h3><p>整体方法就是如上所述，通过这种方法，开发通过svn提交代码时候附带的check log 信息，就能控制jenkins job的走向，比如如果一份svn地址有多个项目工程的情况下，可以选择对哪一个进行打包之类的操作。</p>
+<p>通过上面一句就能获取到xxx，如果开发提交的svn check log没有类似格式的信息，就停止这次构建，这样就达到了开发控制job走向的功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;xxx&#125;</span> ]; <span class="keyword">then</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"停止构建！！"</span></span><br><span class="line"><span class="built_in">exit</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="总结">总结</h3><p>整体方法就是如上所述，通过这种方法，开发通过svn提交代码时候附带的check log 信息，就能控制jenkins job的走向，比如如果一份svn地址有多个项目工程的情况下，可以选择对哪一个进行打包之类的操作。<br>如果你还有更好的方法，欢迎讨论~</p>
 <p>-The End-</p>
 
       
