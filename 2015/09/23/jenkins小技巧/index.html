@@ -3,21 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>七夕节随笔 | JimmyLeaf的个人小站</title>
+  <title>jenkins小技巧 | JimmyLeaf的个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="哪里有人会喜欢寂寞，只不过是不想失望罢了不知道自己一个人过了多少个光棍节，情人节，七夕。。。自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）
-也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了而刚好，我心里装着一个好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，">
+  <meta name="description" content="前言这周接到一个新的需求，开发说能不能通过他们svn ci的log信息来定制jenkins的构建其实也就是，他们提交代码的时候附带log，如果写上[jenkins:xxx]，就触发打包，否则本次构建就不执行操作
+实现原理
+首先jenkins，是可以配置去轮询svn有没有新的代码提交的，配置方法是，在构建触发器-Poll SCM中输入  /x    *  表示x分钟去查询一次有没有代码变动，这里的配">
 <meta property="og:type" content="article">
-<meta property="og:title" content="七夕节随笔">
-<meta property="og:url" content="http://yoursite.com/2015/08/21/七夕节随笔/index.html">
+<meta property="og:title" content="jenkins小技巧">
+<meta property="og:url" content="http://yoursite.com/2015/09/23/jenkins小技巧/index.html">
 <meta property="og:site_name" content="JimmyLeaf的个人小站">
-<meta property="og:description" content="哪里有人会喜欢寂寞，只不过是不想失望罢了不知道自己一个人过了多少个光棍节，情人节，七夕。。。自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）
-也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了而刚好，我心里装着一个好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，">
-<meta property="og:updated_time" content="2015-08-20T16:36:31.000Z">
+<meta property="og:description" content="前言这周接到一个新的需求，开发说能不能通过他们svn ci的log信息来定制jenkins的构建其实也就是，他们提交代码的时候附带log，如果写上[jenkins:xxx]，就触发打包，否则本次构建就不执行操作
+实现原理
+首先jenkins，是可以配置去轮询svn有没有新的代码提交的，配置方法是，在构建触发器-Poll SCM中输入  /x    *  表示x分钟去查询一次有没有代码变动，这里的配">
+<meta property="og:updated_time" content="2015-09-23T06:11:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七夕节随笔">
-<meta name="twitter:description" content="哪里有人会喜欢寂寞，只不过是不想失望罢了不知道自己一个人过了多少个光棍节，情人节，七夕。。。自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）
-也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了而刚好，我心里装着一个好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，">
+<meta name="twitter:title" content="jenkins小技巧">
+<meta name="twitter:description" content="前言这周接到一个新的需求，开发说能不能通过他们svn ci的log信息来定制jenkins的构建其实也就是，他们提交代码的时候附带log，如果写上[jenkins:xxx]，就触发打包，否则本次构建就不执行操作
+实现原理
+首先jenkins，是可以配置去轮询svn有没有新的代码提交的，配置方法是，在构建触发器-Poll SCM中输入  /x    *  表示x分钟去查询一次有没有代码变动，这里的配">
   
     <link rel="alternative" href="/atom.xml" title="JimmyLeaf的个人小站" type="application/atom+xml">
   
@@ -169,11 +172,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-七夕节随笔" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-jenkins小技巧" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/21/七夕节随笔/" class="article-date">
-  	<time datetime="2015-08-20T16:23:17.000Z" itemprop="datePublished">2015-08-21</time>
+      <a href="/2015/09/23/jenkins小技巧/" class="article-date">
+  	<time datetime="2015-09-23T05:56:20.000Z" itemprop="datePublished">2015-09-23</time>
 </a>
     </div>
   
@@ -186,7 +189,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      七夕节随笔
+      jenkins小技巧
     </h1>
   
 
@@ -195,7 +198,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情记录/">心情记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
 	</div>
 
         
@@ -206,8 +209,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>哪里有人会喜欢寂寞，只不过是不想失望罢了<br>不知道自己一个人过了多少个光棍节，情人节，七夕。。。<br>自从毕业以来，好像就把自己的交友圈封闭了，除了职场圈和之前的朋友，就没有兴趣，也没有精力去发展新的朋友了<br>所以才会一直单身到现在吧（不过是自己给自己找个理由罢了）</p>
-<p>也是，何必去羡慕他人晒出来的幸福，只要心里装着一个喜欢的人就够了<br>而刚好，我心里装着一个<br>好像喜欢很多年了，一直不敢表白，怕失去，怕被拒绝，什么都怕，胆小如鼠<br>是时候勇敢往前踏一步了，就算前方是悬崖又如何<br>加油！少年<br>晚安~</p>
+        <h2 id="前言">前言</h2><p>这周接到一个新的需求，开发说能不能通过他们svn ci的log信息来定制jenkins的构建<br>其实也就是，他们提交代码的时候附带log，如果写上[jenkins:xxx]，就触发打包，否则本次构建就不执行操作</p>
+<h3 id="实现原理">实现原理</h3><ol>
+<li>首先jenkins，是可以配置去轮询svn有没有新的代码提交的，配置方法是，在构建触发器-Poll SCM中输入  <em>/x </em> <em> </em> *  表示x分钟去查询一次有没有代码变动，这里的配置方法类似于linux的定时任务命令contrab的配置，具体请百度</li>
+<li>其次如果代码有提交，jenkins查询到是会触发一次新的构建，新的构建在job/builds/${BUILD_NUMBER}/changelog.xml 是保存了代码变动信息的，包括svn check log</li>
+<li>根据相应的正则表达式，就能在对应changelog.xml里找到对应格式的信息，在本实例是要获取xxx的值，方便后续打包使用，具体情况这里可以变通</li>
+</ol>
+<h3 id="具体实现">具体实现</h3><p>shell具体实现如下，在job配置构建栏，新增Execute shell<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx=`perl -<span class="keyword">n</span> -<span class="keyword">e</span> '/\[jenkins:(.*)$\]/ &amp;&amp; <span class="keyword">print</span> <span class="string">"$1"</span>' ../builds/<span class="label">$&#123;BUILD_NUMBER&#125;</span>/changelog.xml`</span><br></pre></td></tr></table></figure></p>
+<p>通过上面一句就能获取到xxx，如果开发提交的svn check log没有类似格式的信息，就停止这次构建，这样就达到了开发控制job走向的功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;xxx&#125;</span> ]; <span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"停止构建！！"</span></span><br><span class="line">	<span class="built_in">exit</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="总结">总结</h3><p>整体方法就是如上所述，通过这种方法，开发通过svn提交代码时候附带的check log 信息，就能控制jenkins job的走向，比如如果一份svn地址有多个项目工程的情况下，可以选择对哪一个进行打包之类的操作。</p>
+<p>-The End-</p>
 
       
     </div>
@@ -217,18 +228,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/24/PHP-CURL单独获取http状态码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          PHP CURL单独获取http状态码
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2015/09/11/使用symbolicatecrash分析ios-crash文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用symbolicatecrash分析ios crash文件</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -257,7 +259,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="七夕节随笔" data-title="七夕节随笔" data-url="http://yoursite.com/2015/08/21/七夕节随笔/"></div>
+	<div class="ds-thread" data-thread-key="jenkins小技巧" data-title="jenkins小技巧" data-url="http://yoursite.com/2015/09/23/jenkins小技巧/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
